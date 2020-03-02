@@ -28,7 +28,7 @@ namespace WebAPISample.Controllers
 
         // GET api/movie/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movie>> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var movie = await _context.Movies.FindAsync(id);
             if (movie is null)
@@ -49,7 +49,7 @@ namespace WebAPISample.Controllers
 
         // PUT api/movie/5
         [HttpPut]
-        public async Task<ActionResult<Movie>> Put(int id, Movie movie)
+        public async Task<IActionResult> Put(int id, Movie movie)
         {
             if (id != movie.MovieId)
             {
