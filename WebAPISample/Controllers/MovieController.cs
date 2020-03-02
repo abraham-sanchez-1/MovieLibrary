@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebAPISample.Data;
 using WebAPISample.Models;
 
@@ -46,9 +47,30 @@ namespace WebAPISample.Controllers
 
         // PUT api/movie/5
         [HttpPut]
-        public void Put(int id, [FromBody]string value)
+        public async Task<ActionResult<Movie>> Put(int id, Movie movie)
         {
-            // Update movie in db logic
+            if (id != movie.MovieId)
+            {
+                return BadRequest();
+            }
+            _context.Entry(movie).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MovieExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+                
+            }
+            return NoContent();
         }
 
         // DELETE api/movie/5
@@ -57,5 +79,7 @@ namespace WebAPISample.Controllers
         {
             // Delete movie from db logic
         }
+        private bool MovieExists(int id) =>
+            _context.Movies.Any(m => m.MovieId == id);
     }
 }
