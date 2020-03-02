@@ -1,7 +1,8 @@
 (function($){
     function processForm( e ){
         var dict = {
-        	Title : this["title"].value,
+            Title : this["title"].value,
+            Genre : this["genre"].value,            
         	Director: this["director"].value
         };
 
