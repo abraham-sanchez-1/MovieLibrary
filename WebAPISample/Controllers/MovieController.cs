@@ -40,11 +40,19 @@ namespace WebAPISample.Controllers
 
         // POST api/movie
         [HttpPost]
-        public void Post([FromBody]Movie value)
+        public async Task<IActionResult> Post([FromBody]Movie value)
         {
             // Create movie in db logic
-            _context.Movies.Add(value);
-            _context.SaveChangesAsync();
+            var newMovie = new Movie
+            {
+                Title = value.Title,
+                Genre = value.Genre,
+                Director = value.Director
+            };
+            _context.Movies.Add(newMovie);
+            await _context.SaveChangesAsync();
+
+            return Ok(newMovie);
         }
 
         // PUT api/movie/5
@@ -76,11 +84,11 @@ namespace WebAPISample.Controllers
         }
 
         // DELETE api/movie/5
-        [HttpDelete]
-        public void Delete(int id)
-        {
-            // Delete movie from db logic
-        }
+        //[HttpDelete]
+        //public void Delete(int id)
+        //{
+        //    // Delete movie from db logic
+        //}
         private bool MovieExists(int id) =>
             _context.Movies.Any(m => m.MovieId == id);
     }
