@@ -57,29 +57,18 @@ namespace WebAPISample.Controllers
 
         // PUT api/movie/5
         [HttpPut]
-        public async Task<IActionResult> Put(int id, Movie movie)
+        public async Task<IActionResult> Put(int id, [FromBody]Movie movie)
         {
             if (id != movie.MovieId)
             {
                 return BadRequest();
             }
-            _context.Entry(movie).State = EntityState.Modified;
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MovieExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-                
-            }
+            var updateMovie = _context.Movies.FirstOrDefault(m => m.MovieId == id);
+            updateMovie.Title = movie.Title;
+            updateMovie.Genre = movie.Genre;
+            updateMovie.Director = movie.Director;
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
