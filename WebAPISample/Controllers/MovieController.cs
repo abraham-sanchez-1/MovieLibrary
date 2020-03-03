@@ -59,11 +59,12 @@ namespace WebAPISample.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(int id, [FromBody]Movie movie)
         {
-            if (id != movie.MovieId)
+            var updateMovie = _context.Movies.FirstOrDefault(m => m.MovieId == id);
+            if (id != updateMovie.MovieId)
             {
                 return BadRequest();
             }
-            var updateMovie = _context.Movies.FirstOrDefault(m => m.MovieId == id);
+            
             updateMovie.Title = movie.Title;
             updateMovie.Genre = movie.Genre;
             updateMovie.Director = movie.Director;
