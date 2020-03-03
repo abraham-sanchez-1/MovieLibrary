@@ -1,20 +1,25 @@
-:root {
-    font-family: Arial, Helvetica, sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
+:root {
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 
 body::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 1rem;
 }
 
 body::-webkit-scrollbar-track {
-    background: #1e1e24;
+    background: #fff;
 }
 
 body::-webkit-scrollbar-thumb {
-    background: #4bc413;
+    background: #2C3E50;
 }
-.hidden {
-    visibility: hidden;
+
+form { max-width:420px; margin:50px auto; }
+
+.form-control{
+  font-weight:  500;
+  margin-bottom: 15px;
 }
