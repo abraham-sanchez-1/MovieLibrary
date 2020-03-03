@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>jQuery AJAX POST Form</title>
+    <title>MovieDB</title>
     <meta charset="utf-8">
+    <link rel="icon" href="img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -10,24 +11,29 @@
 <div id="response">
     <pre></pre>
 </div>
+<div class="form-group">
 
-<form id="my-form">
-    <input type="text" name="title" placeholder="Title" />
-    <input type="text" name="genre" placeholder="Genre" />
-    <input type="text" name="director" placeholder="Director" />
+  <form id="my-form">
+      <input class="col-form form-control form-control-sm" type="text" name="title" placeholder="Title" />
+      <input class="form-control form-control-sm" type="text" name="genre" placeholder="Genre" />
+      <input type="text" name="director" placeholder="Director" />
 
-    <button type="submit">Submit</button>
-</form>
+      <button type="submit" class="btn btn-sm btn-outline-primary" style="margin-top: -5px">Add Movie</button>
+  </form>
+</div>
+<div class="">
+
+</div>
 <div class="container">
-<table class="table table-hover table-sm">
-<tr class="table-primary">
-    <th>Title</th>
-    <th>Genre</th>
-    <th>Director</th>
-</tr>
-<tbody id="movieList"></tbody>
+  <table class="table table-hover table-sm">
+    <tr class="table-primary">
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Director</th>
+    </tr>
+    <tbody id="movieList"></tbody>
 
-</table>
+  </table>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
