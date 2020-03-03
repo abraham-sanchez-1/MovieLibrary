@@ -73,12 +73,19 @@ function createTable(data, textStatus, jQxhr){
     $.each(data, function(i, value){
         $('#movieList').append(
             "<tr>"
-                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" +
-            "</tr>"
-
+                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" + 
+                "<td>" + createButtonWithId(value.movieId) +"</td>"
+            + "</tr>"
         );
     });
 }
+
+function createButtonWithId(id){
+    let button = '<button class="btn btn-success btn-sm" value=' + '"'  + id+ '"'+ ' onclick="editMovie(this.value)">Edit</button>';
+    console.log(button);
+    return button;
+}
+
 ($(document).ready(function(){
     getMovies();
 }));
