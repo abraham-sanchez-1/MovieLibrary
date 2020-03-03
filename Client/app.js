@@ -53,6 +53,7 @@
 
         e.preventDefault();
     }
+
 })(jQuery);
 
 function getMovies(){
@@ -73,7 +74,7 @@ function createTable(data, textStatus, jQxhr){
     $.each(data, function(i, value){
         $('#movieList').append(
             "<tr>"
-                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" + 
+                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" +
                 "<td>" + createButtonWithId(value.movieId) +"</td>"
             + "</tr>"
         );
@@ -81,7 +82,7 @@ function createTable(data, textStatus, jQxhr){
 }
 
 function createButtonWithId(id){
-    let button = '<button class="btn btn-success btn-sm" value=' + '"'  + id+ '"'+ ' onclick="editMovie(this.value)">Edit</button>';
+    let button = '<button class="btn btn-success btn-sm" value="' + id + '" onclick="editMovie(this.value)">Edit</button>';
     console.log(button);
     return button;
 }
@@ -89,3 +90,8 @@ function createButtonWithId(id){
 ($(document).ready(function(){
     getMovies();
 }));
+
+function displayModal(){
+  var modal = document.getElementById("pageopen");
+  modal.style.display = "block";
+}
