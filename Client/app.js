@@ -44,7 +44,6 @@
                 $('genre').val('');
                 $('director').val('');
 
-                // Call GET here
                 getMovies();
             },
             error: function( jqXhr, textStatus, errorThrown ){
@@ -66,7 +65,7 @@ function getMovies(){
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
         }
-            
+
     })
 }
 function createTable(data, textStatus, jQxhr){
