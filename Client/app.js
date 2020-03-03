@@ -14,6 +14,7 @@
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
                 $('#response pre').html( data );
+                getMovies();
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -44,6 +45,7 @@
                 $('director').val('');
 
                 // Call GET here
+                getMovies();
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -53,3 +55,31 @@
         e.preventDefault();
     }
 })(jQuery);
+
+function getMovies(){
+    $.ajax({
+        url: 'https://localhost:44325/api/movie',
+        dataType: 'json',
+        type: 'get',
+        contentType: 'application/json',
+        success: (data, textStatus, jqXHR) => createTable(data),
+        error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
+        }
+            
+    })
+}
+function createTable(data, textStatus, jQxhr){
+    $('#movieList').html('');
+    $.each(data, function(i, value){
+        $('#movieList').append(
+            "<tr>"
+                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" +
+            "</tr>"
+
+        );
+    });
+}
+($(document).ready(function(){
+    getMovies();
+}));

@@ -3,6 +3,7 @@
 <head>
     <title>jQuery AJAX POST Form</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
 
@@ -17,6 +18,17 @@
 
     <button type="submit">Submit</button>
 </form>
+<div class="container">
+<table class="table table-hover table-sm">
+<tr class="table-primary">
+    <th>Title</th>
+    <th>Genre</th>
+    <th>Director</th>
+</tr>
+<tbody id="movieList"></tbody>
+
+</table>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="./app.js"></script>
