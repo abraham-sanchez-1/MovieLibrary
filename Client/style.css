@@ -15,3 +15,6 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background: #4bc413;
 }
+.hidden {
+    visibility: hidden;
+}

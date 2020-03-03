@@ -74,12 +74,15 @@ function createTable(data, textStatus, jQxhr){
     $.each(data, function(i, value){
         $('#movieList').append(
             "<tr>"
-                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" +
-            "</tr>"
-
+                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" + 
+                + '<td>' +'<button type="button" class="btn btn-info">Edit</button></td>' 
+                + '<td class="hidden">'+ value.movieId 
+                + '</td> ' 
+                + "</tr>"
         );
     });
 }
+
 ($(document).ready(function(){
     getMovies();
 }));
