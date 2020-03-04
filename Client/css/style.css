@@ -23,3 +23,11 @@ form { max-width:420px; margin:50px auto; }
   font-weight:  500;
   margin-bottom: 15px;
 }
+.modal{
+  max-height: 40vh;
+}
+
+.modal-body {
+    height: 60vh;
+    overflow-y: auto;
+}
