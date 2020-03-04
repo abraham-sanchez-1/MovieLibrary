@@ -44,7 +44,7 @@ function processForm( e ){
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
                 $('#editForm').html(data);
-
+            
                 getMovies();
             },
             error: function( jqXhr, textStatus, errorThrown ){
@@ -52,7 +52,7 @@ function processForm( e ){
             }
         });
 
-        e.preventDefault(e);
+        e.preventDefault();
     }
 
 
@@ -97,10 +97,11 @@ function createModal(){
 function changeModalForm(id){
     $.get(("https://localhost:44325/api/movie/"+id),
     function(data){
-        document.getElementById("editForm").innerHTML = '<input class="form-control" type="text" name="title" placeholder="' +
-              data.title + '"/><input class="form-control" type="text" name="genre" placeholder="' +
-              data.genre +'" /><input class="form-control" type="text" name="director" placeholder="' +
-              data.director +'" /><button type="submit" class="btn btn-outline-primary" >Save</button>';
+        document.getElementById("editForm").innerHTML = '<input class="form-control" style="display:none" type="text" name="movieId" value="' +
+              data.movieId + '" value="'+ data.movieId +'"/><input class="form-control" type="text" name="title" placeholder="' +
+              data.title + '" value="'+ data.title +'" /><input class="form-control" type="text" name="genre" placeholder="' +
+              data.genre +'" value="'+ data.genre +'" /><input class="form-control" type="text" name="director" placeholder="' +
+              data.director +'" value="'+ data.director +'" /><button type="submit" class="btn btn-outline-primary" >Save</button>';
     });
 }
 
