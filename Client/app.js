@@ -1,30 +1,30 @@
-(function($){
-    function processForm( e ){
-        var dict = {
-            Title : this["title"].value,
-            Genre : this["genre"].value,
-        	Director: this["director"].value
-        };
 
-        $.ajax({
-            url: 'https://localhost:44325/api/movie',
-            dataType: 'json',
-            type: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify(dict),
-            success: function( data, textStatus, jQxhr ){
-                $('#response pre').html( data );
-                getMovies();
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
-            }
-        });
+function processForm( e ){
+    var dict = {
+        Title : this["title"].value,
+        Genre : this["genre"].value,
+        Director: this["director"].value
+    };
 
-        e.preventDefault();
-    }
+    $.ajax({
+        url: 'https://localhost:44325/api/movie',
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(dict),
+        success: function( data, textStatus, jQxhr ){
+            $('#response pre').html( data );
+            getMovies();
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
+        }
+    });
 
-    $('#my-form').submit( processForm );
+    e.preventDefault();
+}
+
+    
     //PUT
     function editMovie( id ){
         var dict = {
@@ -54,7 +54,7 @@
         e.preventDefault();
     }
 
-})(jQuery);
+
 
 function getMovies(){
     $.ajax({
@@ -82,16 +82,21 @@ function createTable(data, textStatus, jQxhr){
 }
 
 function createButtonWithId(id){
-    let button = '<button class="btn btn-success btn-sm" value="' + id + '" onclick="editMovie(this.value)">Edit</button>';
+    let button = '<button class="btn btn-success btn-sm" value="' + id + '" onclick="alertScream(this.value)">Edit</button>';
     console.log(button);
     return button;
 }
 
-($(document).ready(function(){
-    getMovies();
-}));
+function alertScream(id){
+    alert("Relevant id here is : " + id);
+}
 
 function displayModal(){
   var modal = document.getElementById("pageopen");
   modal.style.display = "block";
 }
+
+($(document).ready(function(){
+    getMovies();
+}));
+$('#my-form').submit( processForm );
