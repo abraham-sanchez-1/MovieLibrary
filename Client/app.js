@@ -26,15 +26,18 @@ function processForm( e ){
 
     
     //PUT
-    function editMovie( id ){
+    function editMovie(e){
+        var MovieId = this["movieId"].value;
         var dict = {
+            
             Title : this["title"].value,
             Genre : this["genre"].value,
         	Director: this["director"].value
         };
+        
 
         $.ajax({
-            url: 'https://localhost:44325/api/movie' + id,
+            url: 'https://localhost:44325/api/movie?id=' + MovieId,
             dataType: 'json',
             type: 'put',
             contentType: 'application/json',
@@ -51,7 +54,7 @@ function processForm( e ){
             }
         });
 
-        e.preventDefault();
+        e.preventDefault(e);
     }
 
 
@@ -92,13 +95,10 @@ function createModal(){
 }
 function changeModalForm(id){
     $.get(("https://localhost:44325/api/movie/"+id), function(data){
-        document.getElementById("editForm").innerHTML =   '<input class="form-control" type="text" name="title" placeholder="'+data.title +'"/><input class="form-control" type="text" name="genre" placeholder="'+data.genre +'" /><input class="form-control" type="text" name="director" placeholder="'+data.director +'" />';
+        document.getElementById("editForm").innerHTML =   '<input class="form-control" style="display:none" type="text" name="movieId" placeholder="'+data.movieId +'" value="'+data.movieId+'" readonly/><input class="form-control" type="text" name="title" placeholder="'+data.title +'" /><input class="form-control" type="text" name="genre" placeholder="'+data.genre +'" value="'+data.genre+'"/><input class="form-control" type="text" name="director" placeholder="'+data.director +'" value="'+data.director+'"/><button type="submit" class="btn btn-outline-primary" >Update</button>';
     });
 }
 
-function alertScream(id){
-    alert("Relevant id here is : " + id);
-}
 
 function displayModal(){
   var modal = document.getElementById("pageopen");
@@ -109,4 +109,4 @@ function displayModal(){
     getMovies();
 }));
 $('#my-form').submit( processForm );
-$('#editForm')
+$('#editForm').submit(editMovie);
