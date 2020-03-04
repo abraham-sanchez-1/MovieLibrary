@@ -24,7 +24,7 @@ function processForm( e ){
     e.preventDefault();
 }
 
-    
+
     //PUT
     function editMovie( id ){
         var dict = {
@@ -71,12 +71,14 @@ function getMovies(){
 }
 function createTable(data, textStatus, jQxhr){
     $('#movieList').html('');
-    $.each(data, function(i, value){
+    $.each(data, function(i, movie){
         $('#movieList').append(
-            "<tr>"
-                + "<td>" + value.title + "</td>" + "<td>" + value.genre + "</td>" + "<td>" + value.director + "</td>" +
-                "<td>" + createButtonWithId(value.movieId) +"</td>"
-            + "</tr>"
+            "<tr>" +
+              "<td>" + movie.title + "</td>" +
+              "<td>" + movie.genre + "</td>" +
+              "<td>" + movie.director + "</td>" +
+              "<td>" + createButtonWithId(movie.movieId) + "</td>" + 
+            "</tr>"
         );
     });
 }
