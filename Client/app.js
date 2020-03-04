@@ -101,7 +101,8 @@ function changeModalForm(id){
               data.movieId + '" value="'+ data.movieId +'"/><input class="form-control" type="text" name="title" placeholder="' +
               data.title + '" value="'+ data.title +'" /><input class="form-control" type="text" name="genre" placeholder="' +
               data.genre +'" value="'+ data.genre +'" /><input class="form-control" type="text" name="director" placeholder="' +
-              data.director +'" value="'+ data.director +'" /><button type="submit" class="btn btn-outline-primary" >Save</button>';
+              data.director +'" value="'+ data.director +'" /><button type="submit" class="btn btn-outline-primary">Save</button>' +
+              '<a style="margin-left: 15px" class="btn btn-danger" href="#" rel="modal:close">Close</a>';
     });
 }
 
