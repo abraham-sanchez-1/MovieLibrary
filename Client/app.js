@@ -82,9 +82,18 @@ function createTable(data, textStatus, jQxhr){
 }
 
 function createButtonWithId(id){
-    let button = '<button class="btn btn-success btn-sm" value="' + id + '" onclick="alertScream(this.value)">Edit</button>';
+    let button = '<a href="#ex1" rel="modal:open"><button class="btn btn-success btn-sm" value="' + id + '" onclick=changeModalForm(this.value)>Edit</button></a>';
     console.log(button);
     return button;
+}
+function createModal(){
+    let modal = '<p><a href="#ex1" rel="modal:open">Open Modal</a></p>';
+    return modal;
+}
+function changeModalForm(id){
+    $.get(("https://localhost:44325/api/movie/"+id), function(data){
+        document.getElementById("editForm").innerHTML =   '<input class="form-control" type="text" name="title" placeholder="'+data.title +'"/><input class="form-control" type="text" name="genre" placeholder="'+data.genre +'" /><input class="form-control" type="text" name="director" placeholder="'+data.director +'" />';
+    });
 }
 
 function alertScream(id){
@@ -100,3 +109,4 @@ function displayModal(){
     getMovies();
 }));
 $('#my-form').submit( processForm );
+$('#editForm')
