@@ -25,35 +25,35 @@ function processForm( e ){
 }
 
 
-    //PUT
-    function editMovie(e){
-        var MovieId = this["movieId"].value;
-        var dict = {
-            
-            Title : this["title"].value,
-            Genre : this["genre"].value,
-        	Director: this["director"].value
-        };
+//PUT
+function editMovie(e){
+    var MovieId = this["movieId"].value;
+    var dict = {
         
+        Title : this["title"].value,
+        Genre : this["genre"].value,
+        Director: this["director"].value
+    };
+    
 
-        $.ajax({
-            url: 'https://localhost:44325/api/movie?id=' + MovieId,
-            dataType: 'json',
-            type: 'put',
-            contentType: 'application/json',
-            data: JSON.stringify(dict),
-            success: function( data, textStatus, jQxhr ){
-                $('#editForm').html(data);
-            
-                getMovies();
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
-            }
-        });
+    $.ajax({
+        url: 'https://localhost:44325/api/movie?id=' + MovieId,
+        dataType: 'json',
+        type: 'put',
+        contentType: 'application/json',
+        data: JSON.stringify(dict),
+        success: function( data, textStatus, jQxhr ){
+            $('#editForm').html(data);
+        
+            getMovies();
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
+        }
+    });
 
-        e.preventDefault();
-    }
+    e.preventDefault();
+}
 
 
 

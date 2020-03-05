@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="css/style.css">
+    
 </head>
 <body>
 
@@ -30,13 +31,14 @@
 <div class="">
 
 </div>
+
 <div class="container">
   <table class="table table-hover table-sm">
     <tr class="table-primary">
       <th>Title</th>
       <th>Genre</th>
       <th>Director</th>
-      <th></th>
+      <th><input id="myInput" type="text" placeholder="Filter"></th>
     </tr>
     <tbody id="movieList"></tbody>
 
@@ -56,6 +58,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#movieList tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
 <script type="text/javascript" src="./app.js"></script>
 </body>
 </html>
