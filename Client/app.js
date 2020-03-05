@@ -29,12 +29,12 @@ function processForm( e ){
 function editMovie(e){
     var MovieId = this["movieId"].value;
     var dict = {
-        
+
         Title : this["title"].value,
         Genre : this["genre"].value,
         Director: this["director"].value
     };
-    
+
 
     $.ajax({
         url: 'https://localhost:44325/api/movie?id=' + MovieId,
@@ -44,7 +44,7 @@ function editMovie(e){
         data: JSON.stringify(dict),
         success: function( data, textStatus, jQxhr ){
             $('#editForm').html(data);
-        
+
             getMovies();
         },
         error: function( jqXhr, textStatus, errorThrown ){
@@ -117,3 +117,11 @@ function displayModal(){
 }));
 $('#my-form').submit( processForm );
 $('#editForm').submit(editMovie);
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#movieList tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
